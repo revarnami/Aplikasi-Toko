@@ -1,6 +1,6 @@
 # README #
 
-this is repository for joystok android apps. This apps will help store owner to manage their own store
+Repository ini untuk joystok android apps. Aplikasi ini akan membantu pemilik toko agar mudah dalam mengelola tokonya.
 
 ### What is this repository for? ###
 
