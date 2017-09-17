@@ -26,8 +26,8 @@ class AndroidApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initRealm()
         component.inject(this)
+        initRealm()
     }
 
     private fun initRealm() {

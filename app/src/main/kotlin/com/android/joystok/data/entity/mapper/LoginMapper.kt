@@ -16,9 +16,12 @@ constructor() : EntryEntityMapper<LoginAPIModel, LoginAPIEntity>()
 {
     override fun transform(entity: LoginAPIEntity?): LoginAPIModel? {
         if (entity != null) {
-            val authModel = LoginAPIModel()
-            authModel.id = entity.id
-            return authModel
+            val loginModel = LoginAPIModel()
+            loginModel.id = entity.id
+            loginModel.ttl = entity.ttl
+            loginModel.userId = entity.userId
+            loginModel.created = entity.created
+            return loginModel
         }
         return null
     }

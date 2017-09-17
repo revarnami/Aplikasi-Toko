@@ -6,4 +6,7 @@ package com.android.joystok.domain.model
 
 open class LoginAPIModel {
     open var id = ""
+    open var ttl = 0
+    open var created = ""
+    open var userId = 0
 }

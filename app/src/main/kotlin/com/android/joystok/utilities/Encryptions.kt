@@ -17,7 +17,7 @@ class Encryptions {
     private val TAG = "Encryptions"
 
     object Keys {
-        val REALM_KEY = "qipdroid"
+        val REALM_KEY = "joystokdroid"
     }
 
     /**
