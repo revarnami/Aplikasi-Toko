@@ -20,6 +20,8 @@ import com.android.joystok.presentation.AndroidApplication
 import com.android.joystok.presentation.internal.di.components.ActivityComponent
 import com.android.joystok.presentation.internal.di.components.DaggerActivityComponent
 import com.android.joystok.presentation.internal.di.module.ActivityModule
+import com.android.joystok.presentation.navigation.navigateToMainPage
+import com.android.joystok.utilities.SessionManager
 import com.android.joystok.utilities.Utils
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
@@ -38,6 +40,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, LoginView {
 
     @Inject
     lateinit var presenter: LoginPresenter
+    lateinit var session: SessionManager
 
     override val contextView: Context
         get() = this
@@ -53,6 +56,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, LoginView {
         setContentView(R.layout.activity_login)
         component.inject(this)
         presenter.view = this
+        session = SessionManager(this)
 
         // Set up the login form.
         val mEmailSignInButton = findViewById(R.id.email_sign_in_button) as Button
@@ -127,8 +131,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, LoginView {
         }
     }
 
-    override fun loginSuccess(id: String) {
-        Utils().snackBarNoAction(rootLoginLL, "Login Success")
+    override fun loginSuccess(id: Int) {
+        session.setUserId(id)
+        navigateToMainPage(this@LoginActivity)
         showProgress(false)
     }
 

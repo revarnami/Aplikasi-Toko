@@ -8,8 +8,7 @@ import rx.Observable
  * Created by Fauzi Arnami on 9/16/17.
  */
 
-class LoginCloudDataStore(private val restAPI: RestAPI
-) : LoginDataStore
+class LoginCloudDataStore(private val restAPI: RestAPI) : LoginDataStore
 {
     override fun login(username: String, password: String): Observable<LoginAPIEntity> {
         return restAPI.postLogin(username, password)

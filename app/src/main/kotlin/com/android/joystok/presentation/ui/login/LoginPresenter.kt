@@ -1,6 +1,5 @@
 package com.android.joystok.presentation.ui.login
 
-import android.util.Log
 import com.android.joystok.domain.model.LoginAPIModel
 import com.android.joystok.domain.using_cases.LoginUseCase
 import com.android.joystok.presentation.internal.di.scope.PerActivity
@@ -21,17 +20,15 @@ constructor(private val loginUseCase: LoginUseCase)
     var view: LoginView? = null
 
     fun onLogin(username: String, password: String) {
-        Log.e(TAG, "onLogin: username = $username")
-        Log.e(TAG, "onLogin: pass = $password")
         loginUseCase.username = username
         loginUseCase.password = password
         loginUseCase.execute(FunctionSubscriber<LoginAPIModel>()
                 .onNext {
-                    Log.e(TAG, "onLogin: ${it.id}")
-                    view!!.loginSuccess(it.id)
+//                    Log.e(TAG, "onLogin: ${it.id}")
+                    view!!.loginSuccess(it.userId)
                 }
                 .onError {
-                    Log.e(TAG, "onLogin: error ${it.message}")
+//                    Log.e(TAG, "onLogin: error ${it.message}")
                     view!!.loginFailed()
                 }
         )

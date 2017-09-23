@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/welcomeNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/welcome"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/storeNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:text="Pasar pagi, Mangga 2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeNameTV" />
+
+    <ImageView
+        android:id="@+id/masterDataIV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/master_data"
+        app:layout_constraintLeft_toLeftOf="@id/storeNameTV"
+        app:layout_constraintTop_toBottomOf="@id/storeNameTV" />
+
+    <Button
+        android:id="@+id/masterDataBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/master_data"
+        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/storeNameTV" />
+
+    <ImageView
+        android:id="@+id/purchasingIV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/purchasing"
+        app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
+        app:layout_constraintTop_toBottomOf="@id/masterDataIV"/>
+
+    <Button
+        android:id="@+id/purchasingBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/purchasing"
+        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/masterDataBtn" />
+
+    <ImageView
+        android:id="@+id/sellingIV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/selling"
+        app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
+        app:layout_constraintTop_toBottomOf="@id/purchasingIV"/>
+
+    <Button
+        android:id="@+id/sellingBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/selling"
+        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/purchasingBtn" />
+
+    <ImageView
+        android:id="@+id/stockIV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/stock"
+        app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
+        app:layout_constraintTop_toBottomOf="@id/sellingIV"/>
+
+    <Button
+        android:id="@+id/stockBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/stock"
+        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sellingBtn" />
+
+    <ImageView
+        android:id="@+id/reportIV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/report"
+        app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
+        app:layout_constraintTop_toBottomOf="@id/stockIV"/>
+
+    <Button
+        android:id="@+id/reportBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/main_row_item_height"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/reports"
+        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stockBtn" />
+
+</android.support.constraint.ConstraintLayout>

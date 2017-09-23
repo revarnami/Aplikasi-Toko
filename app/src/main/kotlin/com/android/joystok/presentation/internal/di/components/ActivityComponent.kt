@@ -3,6 +3,7 @@ package com.android.joystok.presentation.internal.di.components
 import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.internal.di.scope.PerActivity
 import com.android.joystok.presentation.ui.login.LoginActivity
+import com.android.joystok.presentation.ui.main.MainActivity
 import dagger.Component
 
 /**
@@ -13,4 +14,5 @@ import dagger.Component
 @Component(dependencies = arrayOf(ApplicationComponent::class), modules = arrayOf(ActivityModule::class))
 interface ActivityComponent {
     fun inject(loginActivity: LoginActivity)
+    fun inject(mainActivity: MainActivity)
 }

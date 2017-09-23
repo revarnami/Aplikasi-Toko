@@ -8,6 +8,6 @@ import android.content.Context
 
 interface LoginView {
     val contextView: Context
-    fun loginSuccess(id: String)
+    fun loginSuccess(id: Int)
     fun loginFailed()
 }

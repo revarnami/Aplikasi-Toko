@@ -2,6 +2,7 @@ package com.android.joystok.data.net
 
 import com.android.joystok.BuildConfig
 import com.android.joystok.data.entity.LoginAPIEntity
+import com.android.joystok.data.entity.UserAPIEntity
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -42,5 +43,9 @@ constructor() {
                   password: String
     ): Observable<LoginAPIEntity> {
         return service.postLogin(username, password)
+    }
+
+    fun getUser(id: String): Observable<UserAPIEntity> {
+        return service.getUser(id)
     }
 }

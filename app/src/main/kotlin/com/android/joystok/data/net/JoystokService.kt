@@ -1,9 +1,8 @@
 package com.android.joystok.data.net
 
 import com.android.joystok.data.entity.LoginAPIEntity
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import com.android.joystok.data.entity.UserAPIEntity
+import retrofit2.http.*
 import rx.Observable
 
 /**
@@ -11,6 +10,7 @@ import rx.Observable
  */
 
 interface JoystokService {
+    //POST Section
     @FormUrlEncoded
     @POST("Users/login")
     fun postLogin(
@@ -18,4 +18,9 @@ interface JoystokService {
             @Field("password") password: String
     ): Observable<LoginAPIEntity>
 
+    //Get Section
+    @GET("Users/{id}")
+    fun getUser(
+            @Path("id") id: String
+    ): Observable<UserAPIEntity>
 }

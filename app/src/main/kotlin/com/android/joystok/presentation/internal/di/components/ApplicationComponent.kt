@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.android.joystok.domain.executor.PostExecutionThread
 import com.android.joystok.domain.executor.ThreadExecutor
 import com.android.joystok.domain.repository.LoginRepository
+import com.android.joystok.domain.repository.UserRepository
 import com.android.joystok.presentation.AndroidApplication
 import com.android.joystok.presentation.internal.di.module.ApplicationModule
 import com.android.joystok.presentation.navigation.Navigator
@@ -36,4 +37,6 @@ interface ApplicationComponent {
     fun postExecutionThread(): PostExecutionThread
 
     fun loginRepository(): LoginRepository
+
+    fun userRepository(): UserRepository
 }
