@@ -13,8 +13,8 @@ class CompanyCloudDataStore (private val restAPI: RestAPI) : CompanyDataStore
 {
     private val TAG = "LoginCloudDataStore"
 
-    override fun company(id: Int): Observable<CompanyAPIEntity> {
-        return restAPI.getCompany(id)
+    override fun company(auth: String, id: Int): Observable<CompanyAPIEntity> {
+        return restAPI.getCompany(auth, id)
                 .doOnNext {
                     DBHelper().saveCompany(it)
                 }

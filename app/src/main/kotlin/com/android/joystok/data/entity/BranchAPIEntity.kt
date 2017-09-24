@@ -10,14 +10,23 @@ import io.realm.annotations.RealmClass
  */
 
 @RealmClass
-open class CompanyAPIEntity : RealmObject() {
+open class BranchAPIEntity : RealmObject() {
     @PrimaryKey
     @Expose
     open var id = 0
 
     @Expose
-    open var companyCode =  ""
+    open var companyId = 0
 
     @Expose
-    open var status = ""
+    open var name = ""
+
+    @Expose
+    open var address = ""
+
+    @Expose
+    open var remarks = ""
+
+    @Expose
+    open var phone = ""
 }

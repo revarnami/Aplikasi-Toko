@@ -15,9 +15,9 @@ class CompanyDataRepository
 @Inject constructor(private val mapper: CompanyMapper,
                     private val dataFactory: CompanyDataFactory
 ) : CompanyRepository {
-    override fun company(id: Int): Observable<CompanyAPIModel> {
+    override fun company(auth:String, id: Int): Observable<CompanyAPIModel> {
         return dataFactory.createCloudDataStore()
-                .company(id)
+                .company(auth, id)
                 .map({ mapper.transform(it) })
     }
 }

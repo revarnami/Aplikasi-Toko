@@ -9,4 +9,5 @@ import android.content.Context
 interface MainView {
     val contextView: Context
     fun showWelcomeMessage(username: String)
+    fun showBranchInfo(branchName: String, company: String)
 }

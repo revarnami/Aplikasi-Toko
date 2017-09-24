@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.android.joystok.domain.executor.PostExecutionThread
 import com.android.joystok.domain.executor.ThreadExecutor
+import com.android.joystok.domain.repository.BranchRepository
 import com.android.joystok.domain.repository.CompanyRepository
 import com.android.joystok.domain.repository.LoginRepository
 import com.android.joystok.domain.repository.UserRepository
@@ -42,4 +43,6 @@ interface ApplicationComponent {
     fun userRepository(): UserRepository
 
     fun companyRepository(): CompanyRepository
+
+    fun branchRepository(): BranchRepository
 }

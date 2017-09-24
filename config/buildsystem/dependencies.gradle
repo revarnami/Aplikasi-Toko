@@ -66,7 +66,7 @@ ext {
                                 materialDateTime   : "com.wdullaer:materialdatetimepicker:$materialDateTime",
                                 flipView           : "eu.davidea:flipview:${flipView}",
                                 exoPlayer          : "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}",
-                                constraintLayout   : "com.android.support.constraint:constraint-layout:$constraintLayout"
+                                constraintLayout   : "com.android.support.constraint:constraint-layout:${constraintLayout}"
     ]
 
     presentationTestDependencies = [mockito           : "org.mockito:mockito-core:${mockitoVersion}",

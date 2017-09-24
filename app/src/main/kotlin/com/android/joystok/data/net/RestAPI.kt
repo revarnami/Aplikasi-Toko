@@ -1,6 +1,7 @@
 package com.android.joystok.data.net
 
 import com.android.joystok.BuildConfig
+import com.android.joystok.data.entity.BranchAPIEntity
 import com.android.joystok.data.entity.CompanyAPIEntity
 import com.android.joystok.data.entity.LoginAPIEntity
 import com.android.joystok.data.entity.UserAPIEntity
@@ -54,7 +55,11 @@ constructor() {
         return service.getUserInfo(id)
     }
 
-    fun getCompany(id: Int): Observable<CompanyAPIEntity> {
-        return service.getCompany(id)
+    fun getCompany(auth: String, id: Int): Observable<CompanyAPIEntity> {
+        return service.getCompany(auth, id)
+    }
+
+    fun getBranch(auth: String, id: Int): Observable<BranchAPIEntity> {
+        return service.getBranch(auth, id)
     }
 }

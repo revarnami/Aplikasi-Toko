@@ -18,6 +18,8 @@ constructor() : EntryEntityMapper<CompanyAPIModel, CompanyAPIEntity>()
         if (entity != null) {
             val companyModel = CompanyAPIModel()
             companyModel.id = entity.id
+            companyModel.companyCode = entity.companyCode
+            companyModel.status = entity.status
             return companyModel
         }
         return null

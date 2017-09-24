@@ -6,4 +6,6 @@ package com.android.joystok.domain.model
 
 open class CompanyAPIModel {
     open var id = 0
+    open var companyCode =  ""
+    open var status = ""
 }

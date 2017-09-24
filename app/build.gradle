@@ -126,7 +126,6 @@ dependencies {
     androidTestCompile presentationTestDependencies.testingRunner
     androidTestCompile presentationTestDependencies.testingRules
     androidTestCompile presentationTestDependencies.supportAnnotations
-
 }
 
 kapt {

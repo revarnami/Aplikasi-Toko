@@ -1,5 +1,6 @@
 package com.android.joystok.data.net
 
+import com.android.joystok.data.entity.BranchAPIEntity
 import com.android.joystok.data.entity.CompanyAPIEntity
 import com.android.joystok.data.entity.LoginAPIEntity
 import com.android.joystok.data.entity.UserAPIEntity
@@ -32,6 +33,13 @@ interface JoystokService {
 
     @GET("Company/{id}")
     fun getCompany(
+            @Header("authorization") authorization: String,
             @Path("id") id: Int
     ): Observable<CompanyAPIEntity>
+
+    @GET("Branch/{id}")
+    fun getBranch(
+            @Header("authorization") authorization: String,
+            @Path("id") id: Int
+    ): Observable<BranchAPIEntity>
 }

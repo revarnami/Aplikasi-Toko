@@ -8,5 +8,5 @@ import rx.Observable
  */
 
 interface CompanyRepository {
-    fun company(id: Int): Observable<CompanyAPIModel>
+    fun company(auth: String, id: Int): Observable<CompanyAPIModel>
 }

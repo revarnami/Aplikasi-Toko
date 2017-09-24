@@ -1,10 +1,12 @@
 package com.android.joystok.data.cache
 
+import com.android.joystok.data.entity.BranchAPIEntity
 import com.android.joystok.data.entity.CompanyAPIEntity
 import com.android.joystok.data.entity.LoginAPIEntity
 import com.android.joystok.data.entity.UserAPIEntity
 import com.android.joystok.utilities.Utils
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import io.realm.RealmQuery
 
 /**
@@ -21,7 +23,17 @@ class DBHelper {
         val INSTANCE: Utils by lazy { Holder.INSTANCE }
     }
 
-    private val realm: Realm = Realm.getDefaultInstance()
+    lateinit var realm: Realm
+
+    init {
+        val config = RealmConfiguration.Builder()
+                .name("JoyStik.realm")
+                .schemaVersion(1)
+                .deleteRealmIfMigrationNeeded()
+                .build()
+
+        realm = Realm.getInstance(config)
+    }
 
     fun saveLogin(login: LoginAPIEntity) {
         realm.beginTransaction()
@@ -38,6 +50,12 @@ class DBHelper {
     fun saveUser(user: UserAPIEntity) {
         realm.beginTransaction()
         realm.copyToRealmOrUpdate(user)
+        realm.commitTransaction()
+    }
+
+    fun saveBranch(branch: BranchAPIEntity) {
+        realm.beginTransaction()
+        realm.copyToRealmOrUpdate(branch)
         realm.commitTransaction()
     }
 
@@ -68,6 +86,17 @@ class DBHelper {
         }
         else {
             return 0
+        }
+    }
+
+    fun getBranchName(): String {
+        val savedBranch: BranchAPIEntity? = RealmQuery.createQuery(realm, BranchAPIEntity::class.java)
+                .findFirst()
+        if (savedBranch != null) {
+            return savedBranch.name
+        }
+        else {
+            return ""
         }
     }
 }

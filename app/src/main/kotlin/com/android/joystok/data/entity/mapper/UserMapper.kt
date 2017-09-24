@@ -20,6 +20,10 @@ constructor() : EntryEntityMapper<UserAPIModel, UserAPIEntity>()
             userModel.id = entity.id
             userModel.username = entity.username
             userModel.email = entity.email
+            userModel.companyId = entity.companyId
+            userModel.branchId = entity.branchId
+            userModel.userRole = entity.userRole
+            userModel.status = entity.status
             return userModel
         }
         return null

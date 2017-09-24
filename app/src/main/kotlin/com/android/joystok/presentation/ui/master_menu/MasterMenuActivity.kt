@@ -42,4 +42,8 @@ class MasterMenuActivity : AppCompatActivity(), MasterMenuView {
     override fun showWelcomeMessage(username: String) {
         welcomeNameTV.text = getString(R.string.welcome) + ", " + username
     }
+
+    override fun showBranchInfo(branchName: String, company: String) {
+        storeNameTV.text = "$branchName, $company"
+    }
 }
