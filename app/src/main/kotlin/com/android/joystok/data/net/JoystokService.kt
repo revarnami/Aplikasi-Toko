@@ -1,5 +1,6 @@
 package com.android.joystok.data.net
 
+import com.android.joystok.data.entity.CompanyAPIEntity
 import com.android.joystok.data.entity.LoginAPIEntity
 import com.android.joystok.data.entity.UserAPIEntity
 import retrofit2.http.*
@@ -23,4 +24,14 @@ interface JoystokService {
     fun getUser(
             @Path("id") id: String
     ): Observable<UserAPIEntity>
+
+    @GET("UserInfo/{userId}")
+    fun getUserInfo(
+            @Path("userId") id: String
+    ): Observable<UserAPIEntity>
+
+    @GET("Company/{id}")
+    fun getCompany(
+            @Path("id") id: Int
+    ): Observable<CompanyAPIEntity>
 }

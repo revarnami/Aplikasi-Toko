@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rootMainCL"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.android.joystok.presentation.ui.master_menu.MasterMenuActivity">
 
     <TextView
         android:id="@+id/welcomeNameTV"
@@ -29,18 +30,18 @@
         app:layout_constraintTop_toBottomOf="@id/welcomeNameTV" />
 
     <ImageView
-        android:id="@+id/masterDataIV"
+        android:id="@+id/masterGoodsIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/master_data"
+        android:src="@drawable/master_goods"
         app:layout_constraintLeft_toLeftOf="@id/storeNameTV"
         app:layout_constraintTop_toBottomOf="@id/storeNameTV" />
 
     <Button
-        android:id="@+id/masterDataBtn"
+        android:id="@+id/masterGoodsBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -48,24 +49,24 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/master_data"
-        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        android:text="@string/master_goods"
+        app:layout_constraintLeft_toRightOf="@id/masterGoodsIV"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/storeNameTV" />
 
     <ImageView
-        android:id="@+id/purchasingIV"
+        android:id="@+id/masterCategoryIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/purchasing"
+        android:src="@drawable/master_category"
         app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
-        app:layout_constraintTop_toBottomOf="@id/masterDataIV"/>
+        app:layout_constraintTop_toBottomOf="@id/masterGoodsIV"/>
 
     <Button
-        android:id="@+id/purchasingBtn"
+        android:id="@+id/masterCategoryBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -73,24 +74,24 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/purchasing"
-        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        android:text="@string/master_category"
+        app:layout_constraintLeft_toRightOf="@id/masterGoodsIV"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/masterDataBtn" />
+        app:layout_constraintTop_toBottomOf="@id/masterGoodsBtn" />
 
     <ImageView
-        android:id="@+id/sellingIV"
+        android:id="@+id/masterCustomerIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/selling"
+        android:src="@drawable/master_customer"
         app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
-        app:layout_constraintTop_toBottomOf="@id/purchasingIV"/>
+        app:layout_constraintTop_toBottomOf="@id/masterCategoryIV"/>
 
     <Button
-        android:id="@+id/sellingBtn"
+        android:id="@+id/masterCustomerBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -98,59 +99,9 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/selling"
-        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
+        android:text="@string/master_customer"
+        app:layout_constraintLeft_toRightOf="@id/masterGoodsIV"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/purchasingBtn" />
-
-    <ImageView
-        android:id="@+id/stockIV"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/main_row_item_height"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/stock"
-        app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
-        app:layout_constraintTop_toBottomOf="@id/sellingIV"/>
-
-    <Button
-        android:id="@+id/stockBtn"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/main_row_item_height"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/stock"
-        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sellingBtn" />
-
-    <ImageView
-        android:id="@+id/reportIV"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/main_row_item_height"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:src="@drawable/report"
-        app:layout_constraintLeft_toLeftOf="@id/welcomeNameTV"
-        app:layout_constraintTop_toBottomOf="@id/stockIV"/>
-
-    <Button
-        android:id="@+id/reportBtn"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/main_row_item_height"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/reports"
-        app:layout_constraintLeft_toRightOf="@id/masterDataIV"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/stockBtn" />
+        app:layout_constraintTop_toBottomOf="@id/masterCategoryBtn" />
 
 </android.support.constraint.ConstraintLayout>

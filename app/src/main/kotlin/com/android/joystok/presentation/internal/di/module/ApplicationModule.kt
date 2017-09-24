@@ -3,10 +3,12 @@ package com.android.joystok.presentation.internal.di.module
 import android.content.Context
 import android.content.SharedPreferences
 import com.android.joystok.data.executor.JobExecutor
+import com.android.joystok.data.repository.CompanyDataRepository
 import com.android.joystok.data.repository.LoginDataRepository
 import com.android.joystok.data.repository.UserDataRepository
 import com.android.joystok.domain.executor.PostExecutionThread
 import com.android.joystok.domain.executor.ThreadExecutor
+import com.android.joystok.domain.repository.CompanyRepository
 import com.android.joystok.domain.repository.LoginRepository
 import com.android.joystok.domain.repository.UserRepository
 import com.android.joystok.presentation.AndroidApplication
@@ -67,6 +69,12 @@ class ApplicationModule(private val androidApplication: AndroidApplication) {
     @Provides
     @Singleton
     fun provideUserRepository(dataRepository: UserDataRepository): UserRepository {
+        return dataRepository
+    }
+
+    @Provides
+    @Singleton
+    fun provideCompanyRepository(dataRepository: CompanyDataRepository): CompanyRepository {
         return dataRepository
     }
 }

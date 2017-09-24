@@ -19,4 +19,9 @@
     <string name="stock">Stok</string>
     <string name="reports">Laporan</string>
     <string name="welcome">Welcome</string>
+    <string name="menu">Menu</string>
+    <string name="master_goods">Master Barang</string>
+    <string name="master_category">Master Category</string>
+    <string name="master_customer">Master Customer</string>
+    <string name="backpress_message">Tap lagi untuk keluar</string>
 </resources>

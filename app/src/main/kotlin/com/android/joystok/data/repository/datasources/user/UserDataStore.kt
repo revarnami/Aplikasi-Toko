@@ -9,4 +9,5 @@ import rx.Observable
 
 interface UserDataStore {
     fun user(id: String): Observable<UserAPIEntity>
+    fun userInfo(id: String): Observable<UserAPIEntity>
 }

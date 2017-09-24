@@ -20,4 +20,16 @@ open class UserAPIEntity : RealmObject() {
 
     @Expose
     open var email = ""
+
+    @Expose
+    open var companyId = 0
+
+    @Expose
+    open var branchId = 0
+
+    @Expose
+    open var userRole = ""
+
+    @Expose
+    open var status = ""
 }

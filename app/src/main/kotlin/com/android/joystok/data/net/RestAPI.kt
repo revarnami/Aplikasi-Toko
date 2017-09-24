@@ -1,6 +1,7 @@
 package com.android.joystok.data.net
 
 import com.android.joystok.BuildConfig
+import com.android.joystok.data.entity.CompanyAPIEntity
 import com.android.joystok.data.entity.LoginAPIEntity
 import com.android.joystok.data.entity.UserAPIEntity
 import com.google.gson.Gson
@@ -47,5 +48,13 @@ constructor() {
 
     fun getUser(id: String): Observable<UserAPIEntity> {
         return service.getUser(id)
+    }
+
+    fun getUserInfo(id: String): Observable<UserAPIEntity> {
+        return service.getUserInfo(id)
+    }
+
+    fun getCompany(id: Int): Observable<CompanyAPIEntity> {
+        return service.getCompany(id)
     }
 }

@@ -21,4 +21,10 @@ class UserDataRepository
                 .user(id)
                 .map({ mapper.transform(it) })
     }
+
+    override fun userInfo(id: String): Observable<UserAPIModel> {
+        return dataFactory.createCloudDataStore()
+                .userInfo(id)
+                .map({ mapper.transform(it) })
+    }
 }

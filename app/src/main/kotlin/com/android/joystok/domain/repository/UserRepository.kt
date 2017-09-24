@@ -9,4 +9,5 @@ import rx.Observable
 
 interface UserRepository {
     fun user(id: String): Observable<UserAPIModel>
+    fun userInfo(id: String): Observable<UserAPIModel>
 }
