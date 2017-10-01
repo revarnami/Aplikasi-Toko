@@ -28,7 +28,7 @@ class DBHelper {
     init {
         val config = RealmConfiguration.Builder()
                 .name("JoyStik.realm")
-                .schemaVersion(1)
+                .schemaVersion(2)
                 .deleteRealmIfMigrationNeeded()
                 .build()
 

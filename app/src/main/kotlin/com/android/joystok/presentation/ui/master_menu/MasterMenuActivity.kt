@@ -10,6 +10,7 @@ import com.android.joystok.presentation.internal.di.components.ActivityComponent
 import com.android.joystok.presentation.internal.di.components.DaggerActivityComponent
 import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.navigation.navigateBackToMainPage
+import com.android.joystok.presentation.navigation.navigateToMasterCategory
 import kotlinx.android.synthetic.main.activity_master_menu.*
 import javax.inject.Inject
 
@@ -33,6 +34,10 @@ class MasterMenuActivity : AppCompatActivity(), MasterMenuView {
         component.inject(this)
         presenter.view = this
         presenter.onGetUser(DBHelper().getUserId())
+
+        masterCategoryBtn.setOnClickListener {
+            navigateToMasterCategory(this)
+        }
     }
 
     override fun onBackPressed() {

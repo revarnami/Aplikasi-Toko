@@ -1,9 +1,7 @@
 package com.android.joystok.data.net
 
-import com.android.joystok.data.entity.BranchAPIEntity
-import com.android.joystok.data.entity.CompanyAPIEntity
-import com.android.joystok.data.entity.LoginAPIEntity
-import com.android.joystok.data.entity.UserAPIEntity
+import com.android.joystok.data.entity.*
+import com.android.joystok.domain.model.ItemCategoryAPIModel
 import retrofit2.http.*
 import rx.Observable
 
@@ -19,6 +17,21 @@ interface JoystokService {
             @Field("username") username: String,
             @Field("password") password: String
     ): Observable<LoginAPIEntity>
+
+    @FormUrlEncoded
+    @POST("ItemCategory")
+    fun postCategory(
+            @Field("categoryName") categoryName: String,
+            @Field("remarks") remarks: String
+    ): Observable<ItemCategoryAPIEntity>
+
+    @FormUrlEncoded
+    @POST("ItemCategory/update")
+    fun postUpdateCategory(
+            @Field("id") id: Int,
+            @Field("categoryName") categoryName: String,
+            @Field("remarks") remarks: String
+    ): Observable<ItemCategoryAPIEntity>
 
     //Get Section
     @GET("Users/{id}")
@@ -42,4 +55,13 @@ interface JoystokService {
             @Header("authorization") authorization: String,
             @Path("id") id: Int
     ): Observable<BranchAPIEntity>
+
+    @GET("ItemCategory")
+    fun getItemCategoryList(
+            @Header("authorization") authorization: String
+    ): Observable<List<ItemCategoryAPIModel>>
+
+    //Delete Section
+    @DELETE("ItemCategory/{id}")
+    fun deleteCategory(@Path("id") id: Int): Observable<ItemCategoryAPIEntity>
 }

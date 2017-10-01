@@ -1,10 +1,8 @@
 package com.android.joystok.data.net
 
 import com.android.joystok.BuildConfig
-import com.android.joystok.data.entity.BranchAPIEntity
-import com.android.joystok.data.entity.CompanyAPIEntity
-import com.android.joystok.data.entity.LoginAPIEntity
-import com.android.joystok.data.entity.UserAPIEntity
+import com.android.joystok.data.entity.*
+import com.android.joystok.domain.model.ItemCategoryAPIModel
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -61,5 +59,21 @@ constructor() {
 
     fun getBranch(auth: String, id: Int): Observable<BranchAPIEntity> {
         return service.getBranch(auth, id)
+    }
+
+    fun getItemCategoryList(auth: String): Observable<List<ItemCategoryAPIModel>> {
+        return service.getItemCategoryList(auth)
+    }
+
+    fun postCategory(categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> {
+        return service.postCategory(categoryName, remarks)
+    }
+
+    fun postUpdateCategory(id: Int, categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> {
+        return service.postUpdateCategory(id, categoryName, remarks)
+    }
+
+    fun deleteCategory(id: Int): Observable<ItemCategoryAPIEntity> {
+        return service.deleteCategory(id)
     }
 }

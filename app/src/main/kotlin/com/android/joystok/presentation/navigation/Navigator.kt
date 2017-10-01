@@ -3,9 +3,13 @@ package com.android.joystok.presentation.navigation
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.android.joystok.R.anim.*
+import com.android.joystok.presentation.ui.category_detail.CategoryDetailActivity
 import com.android.joystok.presentation.ui.main.MainActivity
+import com.android.joystok.presentation.ui.master_category.MasterCategoryActivity
 import com.android.joystok.presentation.ui.master_menu.MasterMenuActivity
+import com.android.joystok.utilities.Constants
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -32,6 +36,34 @@ fun navigateToMainPage(context: Context?) {
     }
 }
 
+fun navigateToMasterMenu(context: Context?) {
+    if (context != null && context is Activity) {
+        val activity = context
+        val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        activity.start<MasterMenuActivity>(flags, right_in, left_out)
+    }
+}
+
+fun navigateToMasterCategory(context: Context?) {
+    if (context != null && context is Activity) {
+        val activity = context
+        val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        activity.start<MasterCategoryActivity>(flags, right_in, left_out)
+    }
+}
+
+fun navigateToCategoryDetail(context: Context?, categoryId: Int) {
+    if (context != null && context is Activity) {
+        val activity = context
+        val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val extras = Bundle()
+        extras.putInt(Constants.IDS().CATEGORY_ID_KEY, categoryId)
+        activity.start<CategoryDetailActivity>(extras, flags, right_in, left_out)
+    }
+}
+
+
+//Navigate back
 fun navigateBackToMainPage(context: Context?) {
     if (context != null && context is Activity) {
         val activity = context
@@ -40,10 +72,10 @@ fun navigateBackToMainPage(context: Context?) {
     }
 }
 
-fun navigateToMasterMenu(context: Context?) {
+fun navigateBackToMasterCategoryPage(context: Context?) {
     if (context != null && context is Activity) {
         val activity = context
         val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        activity.start<MasterMenuActivity>(flags, right_in, left_out)
+        activity.start<MasterCategoryActivity>(flags, left_in, right_out)
     }
 }

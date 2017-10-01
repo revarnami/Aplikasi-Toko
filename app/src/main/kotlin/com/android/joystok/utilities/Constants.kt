@@ -14,4 +14,9 @@ class Constants {
     }
 
     val PrefKey = "SessionJoyStok"
+
+    class IDS {
+        val ADD_ID = -1
+        val CATEGORY_ID_KEY = "CATEGORY_ID_KEY"
+    }
 }

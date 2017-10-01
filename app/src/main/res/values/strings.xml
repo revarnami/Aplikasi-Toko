@@ -24,4 +24,11 @@
     <string name="master_category">Master Category</string>
     <string name="master_customer">Master Customer</string>
     <string name="backpress_message">Tap lagi untuk keluar</string>
+    <string name="search">Pencarian</string>
+    <string name="title_activity_category_detail">CategoryDetailActivity</string>
+    <string name="category_name">Nama Kategori</string>
+    <string name="remarks">Keterangan</string>
+    <string name="delete">Hapus</string>
+    <string name="add">Tambah</string>
+    <string name="update">Ubah</string>
 </resources>
