@@ -18,5 +18,7 @@ class Constants {
     class IDS {
         val ADD_ID = -1
         val CATEGORY_ID_KEY = "CATEGORY_ID_KEY"
+        val CATEGORY_NAME_KEY = "CATEGORY_NAME_KEY"
+        val REMARKS_KEY = "REMARKS_KEY"
     }
 }

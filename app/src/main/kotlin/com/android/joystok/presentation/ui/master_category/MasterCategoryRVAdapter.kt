@@ -63,7 +63,7 @@ class MasterCategoryRVAdapter (private val activity: Activity,
         val view = holder.itemView
         view.categoryNameTV.text = categoryList[position].categoryName
         view.setOnClickListener {
-            navigateToCategoryDetail(activity, categoryList[position].id)
+            navigateToCategoryDetail(activity, categoryList[position].id, categoryList[position].categoryName, categoryList[position].remarks)
         }
     }
 

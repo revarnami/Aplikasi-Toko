@@ -1,6 +1,8 @@
 package com.android.joystok.domain.repository
 
 import com.android.joystok.domain.model.ItemCategoryAPIModel
+import com.google.gson.JsonObject
+import org.json.JSONObject
 import rx.Observable
 
 /**
@@ -8,8 +10,9 @@ import rx.Observable
  */
 
 interface ItemCategoryRepository {
-    fun itemCategoryList(auth: String): Observable<List<ItemCategoryAPIModel>>
-    fun addCategory(categoryName: String, remarks: String): Observable<ItemCategoryAPIModel>
-    fun updateCategory(id: Int, categoryName: String, remarks: String): Observable<ItemCategoryAPIModel>
-    fun deleteCategory(id: Int): Observable<ItemCategoryAPIModel>
+    fun itemCategoryList(auth: String, filter: JSONObject): Observable<List<ItemCategoryAPIModel>>
+    fun addCategory(auth: String, categoryName: String, remarks: String): Observable<ItemCategoryAPIModel>
+    fun updateCategory(auth: String, where: JSONObject, data: JsonObject): Observable<ItemCategoryAPIModel>
+    fun deleteCategory(auth: String, id: Int): Observable<ItemCategoryAPIModel>
+    fun findCategoryName(auth: String, categoryName: JSONObject): Observable<List<ItemCategoryAPIModel>>
 }

@@ -2,6 +2,8 @@ package com.android.joystok.data.net
 
 import com.android.joystok.data.entity.*
 import com.android.joystok.domain.model.ItemCategoryAPIModel
+import com.google.gson.JsonObject
+import org.json.JSONObject
 import retrofit2.http.*
 import rx.Observable
 
@@ -21,16 +23,17 @@ interface JoystokService {
     @FormUrlEncoded
     @POST("ItemCategory")
     fun postCategory(
+            @Header("authorization") authorization: String,
             @Field("categoryName") categoryName: String,
             @Field("remarks") remarks: String
     ): Observable<ItemCategoryAPIEntity>
 
-    @FormUrlEncoded
+    @Headers("Content-Type: application/json")
     @POST("ItemCategory/update")
     fun postUpdateCategory(
-            @Field("id") id: Int,
-            @Field("categoryName") categoryName: String,
-            @Field("remarks") remarks: String
+            @Header("authorization") authorization: String,
+            @Query("where") where: JSONObject,
+            @Body data: JsonObject
     ): Observable<ItemCategoryAPIEntity>
 
     //Get Section
@@ -58,10 +61,20 @@ interface JoystokService {
 
     @GET("ItemCategory")
     fun getItemCategoryList(
-            @Header("authorization") authorization: String
+            @Header("authorization") authorization: String,
+            @Query("filter") filter: JSONObject
+    ): Observable<List<ItemCategoryAPIModel>>
+
+    @GET("ItemCategory/findOne")
+    fun findCategoryName(
+            @Header("authorization") authorization: String,
+            @Query("categoryName") categoryName: JSONObject
     ): Observable<List<ItemCategoryAPIModel>>
 
     //Delete Section
     @DELETE("ItemCategory/{id}")
-    fun deleteCategory(@Path("id") id: Int): Observable<ItemCategoryAPIEntity>
+    fun deleteCategory(
+            @Header("authorization") authorization: String,
+            @Path("id") id: Int
+    ): Observable<ItemCategoryAPIEntity>
 }

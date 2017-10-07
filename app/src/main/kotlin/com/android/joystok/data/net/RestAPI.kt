@@ -4,9 +4,11 @@ import com.android.joystok.BuildConfig
 import com.android.joystok.data.entity.*
 import com.android.joystok.domain.model.ItemCategoryAPIModel
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -61,19 +63,23 @@ constructor() {
         return service.getBranch(auth, id)
     }
 
-    fun getItemCategoryList(auth: String): Observable<List<ItemCategoryAPIModel>> {
-        return service.getItemCategoryList(auth)
+    fun getItemCategoryList(auth: String, filter: JSONObject): Observable<List<ItemCategoryAPIModel>> {
+        return service.getItemCategoryList(auth, filter)
     }
 
-    fun postCategory(categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> {
-        return service.postCategory(categoryName, remarks)
+    fun postCategory(auth: String, categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> {
+        return service.postCategory(auth, categoryName, remarks)
     }
 
-    fun postUpdateCategory(id: Int, categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> {
-        return service.postUpdateCategory(id, categoryName, remarks)
+    fun postUpdateCategory(auth: String, where: JSONObject, data: JsonObject): Observable<ItemCategoryAPIEntity> {
+        return service.postUpdateCategory(auth, where, data)
     }
 
-    fun deleteCategory(id: Int): Observable<ItemCategoryAPIEntity> {
-        return service.deleteCategory(id)
+    fun deleteCategory(auth: String, id: Int): Observable<ItemCategoryAPIEntity> {
+        return service.deleteCategory(auth, id)
+    }
+
+    fun findCategoryName(auth: String, categoryName: JSONObject): Observable<List<ItemCategoryAPIModel>> {
+        return service.findCategoryName(auth, categoryName)
     }
 }

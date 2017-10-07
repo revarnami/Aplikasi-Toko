@@ -10,8 +10,10 @@ import com.android.joystok.presentation.internal.di.components.DaggerActivityCom
 import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.navigation.navigateBackToMasterCategoryPage
 import com.android.joystok.utilities.Constants
+import com.android.joystok.utilities.OnMessageAction
 import com.android.joystok.utilities.Utils
 import kotlinx.android.synthetic.main.activity_category_detail.*
+import org.json.JSONObject
 import javax.inject.Inject
 
 class CategoryDetailActivity : AppCompatActivity(), CategoryDetailView {
@@ -37,18 +39,27 @@ class CategoryDetailActivity : AppCompatActivity(), CategoryDetailView {
 
         val extras = intent.extras
         categoryId = extras.getInt(Constants.IDS().CATEGORY_ID_KEY)
-        categoryName = categoryDetailNameTV.text.toString()
-        remarks = categoryDetailRemarksTV.text.toString()
+        categoryName = extras.getString(Constants.IDS().CATEGORY_NAME_KEY)
+        remarks = extras.getString(Constants.IDS().REMARKS_KEY)
         if (categoryId == Constants.IDS().ADD_ID) {
             createUpdateCategoryBtn.text = getString(R.string.add)
             createUpdateCategoryBtn.setOnClickListener {
+                categoryName = categoryDetailNameTV.text.toString()
+                remarks = categoryDetailRemarksTV.text.toString()
+                categoryName = categoryDetailNameTV.text.toString()
                 presenter.addCategory(categoryName, remarks)
             }
             deleteCategoryBtn.visibility = View.GONE
         } else {
+            categoryDetailNameTV.setText(categoryName)
+            categoryDetailRemarksTV.setText(remarks)
             createUpdateCategoryBtn.text = getString(R.string.update)
             createUpdateCategoryBtn.setOnClickListener {
-                presenter.updateCategory(categoryId, categoryName, remarks)
+                categoryName = categoryDetailNameTV.text.toString()
+                remarks = categoryDetailRemarksTV.text.toString()
+                val where = JSONObject()
+                where.put("id", categoryId)
+                presenter.updateCategory(where, categoryName, remarks, categoryId)
             }
             deleteCategoryBtn.visibility = View.VISIBLE
             deleteCategoryBtn.setOnClickListener {
@@ -62,6 +73,11 @@ class CategoryDetailActivity : AppCompatActivity(), CategoryDetailView {
     }
 
     override fun showMessage(message: String) {
-        Utils().snackBarNoAction(rootCategoryDetailCL, message)
+        val onMessageAction = object : OnMessageAction {
+            override fun onAction() {
+                navigateBackToMasterCategoryPage(this@CategoryDetailActivity)
+            }
+        }
+        Utils().snackBarMessageActionBlue(rootCategoryDetailCL, message, onMessageAction)
     }
 }

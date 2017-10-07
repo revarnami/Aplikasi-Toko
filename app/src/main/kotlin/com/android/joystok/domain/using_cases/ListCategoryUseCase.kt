@@ -4,6 +4,7 @@ import com.android.joystok.domain.executor.PostExecutionThread
 import com.android.joystok.domain.executor.ThreadExecutor
 import com.android.joystok.domain.model.ItemCategoryAPIModel
 import com.android.joystok.domain.repository.ItemCategoryRepository
+import org.json.JSONObject
 import rx.Observable
 import javax.inject.Inject
 
@@ -19,8 +20,9 @@ constructor(threadExecutor: ThreadExecutor,
 ) : UseCase<List<ItemCategoryAPIModel>>(threadExecutor, postExecutionThread)
 {
     var auth: String = ""
+    var filter: JSONObject = JSONObject()
 
     override fun buildUseCaseObservable(): Observable<List<ItemCategoryAPIModel>>? {
-        return this.itemCategoryRepository.itemCategoryList(auth)
+        return this.itemCategoryRepository.itemCategoryList(auth, filter)
     }
 }

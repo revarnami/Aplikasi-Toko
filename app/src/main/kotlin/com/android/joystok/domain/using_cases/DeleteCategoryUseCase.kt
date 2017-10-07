@@ -18,9 +18,10 @@ constructor(threadExecutor: ThreadExecutor,
             private val itemCategoryRepository: ItemCategoryRepository
 ) : UseCase<ItemCategoryAPIModel>(threadExecutor, postExecutionThread)
 {
+    var auth = ""
     var id = 0
 
     override fun buildUseCaseObservable(): Observable<ItemCategoryAPIModel>? {
-        return this.itemCategoryRepository.deleteCategory(id)
+        return this.itemCategoryRepository.deleteCategory(auth, id)
     }
 }

@@ -2,6 +2,7 @@ package com.android.joystok.utilities
 
 import android.graphics.Color
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.view.View
 
 /**
@@ -46,6 +47,16 @@ class Utils {
 
     fun snackBarNoAction(rootview: View, message: String) {
         val snackbarMessage = Snackbar.make(rootview, message, Snackbar.LENGTH_LONG)
+        snackbarMessage.show()
+    }
+
+    fun snackBarMessageActionBlue(rootview: View, message: String, onMessageAction: OnMessageAction) {
+        val snackbarMessage = Snackbar.make(rootview, message, Snackbar.LENGTH_INDEFINITE)
+        snackbarMessage.setActionTextColor(ContextCompat.getColor(rootview.context, android.R.color.holo_blue_light))
+        snackbarMessage.setAction("OK", {
+            snackbarMessage.dismiss()
+            onMessageAction.onAction()
+        })
         snackbarMessage.show()
     }
 }

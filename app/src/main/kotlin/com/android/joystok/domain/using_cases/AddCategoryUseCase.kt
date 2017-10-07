@@ -18,10 +18,11 @@ constructor(threadExecutor: ThreadExecutor,
             private val itemCategoryRepository: ItemCategoryRepository
 ) : UseCase<ItemCategoryAPIModel>(threadExecutor, postExecutionThread)
 {
+    var auth: String = ""
     var categoryName: String = ""
     var remarks: String = ""
 
     override fun buildUseCaseObservable(): Observable<ItemCategoryAPIModel>? {
-        return this.itemCategoryRepository.addCategory(categoryName, remarks)
+        return this.itemCategoryRepository.addCategory(auth, categoryName, remarks)
     }
 }

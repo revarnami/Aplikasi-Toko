@@ -52,12 +52,14 @@ fun navigateToMasterCategory(context: Context?) {
     }
 }
 
-fun navigateToCategoryDetail(context: Context?, categoryId: Int) {
+fun navigateToCategoryDetail(context: Context?, categoryId: Int, categoryName: String, remarks: String) {
     if (context != null && context is Activity) {
         val activity = context
         val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val extras = Bundle()
         extras.putInt(Constants.IDS().CATEGORY_ID_KEY, categoryId)
+        extras.putString(Constants.IDS().CATEGORY_NAME_KEY, categoryName)
+        extras.putString(Constants.IDS().REMARKS_KEY, remarks)
         activity.start<CategoryDetailActivity>(extras, flags, right_in, left_out)
     }
 }

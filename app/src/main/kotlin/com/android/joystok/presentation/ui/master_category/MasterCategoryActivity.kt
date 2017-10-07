@@ -15,6 +15,7 @@ import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.navigation.navigateToCategoryDetail
 import com.android.joystok.utilities.Constants
 import kotlinx.android.synthetic.main.activity_master_category.*
+import org.json.JSONObject
 import javax.inject.Inject
 
 class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
@@ -34,11 +35,13 @@ class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
         setContentView(R.layout.activity_master_category)
         component.inject(this)
         presenter.view = this
-        presenter.onGetList()
+        val filter = JSONObject()
+        filter.put("categoryName", "")
+        presenter.onGetList(filter)
         setupToolbar()
 
         masterCategoryFAB.setOnClickListener {
-            navigateToCategoryDetail(this, Constants.IDS().ADD_ID)
+            navigateToCategoryDetail(this, Constants.IDS().ADD_ID, "", "")
         }
     }
 
@@ -52,6 +55,9 @@ class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
                     searchView.isIconified = true
                 }
                 myActionMenuItem.collapseActionView()
+                val filter = JSONObject()
+                filter.put("categoryName", query)
+                presenter.onGetList(filter)
                 return false
             }
 
