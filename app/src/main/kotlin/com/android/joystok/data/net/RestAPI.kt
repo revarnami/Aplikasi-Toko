@@ -2,6 +2,7 @@ package com.android.joystok.data.net
 
 import com.android.joystok.BuildConfig
 import com.android.joystok.data.entity.*
+import com.android.joystok.domain.model.CustomerAPIModel
 import com.android.joystok.domain.model.ItemCategoryAPIModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -81,5 +82,21 @@ constructor() {
 
     fun findCategoryName(auth: String, categoryName: JSONObject): Observable<List<ItemCategoryAPIModel>> {
         return service.findCategoryName(auth, categoryName)
+    }
+
+    fun getCustomerList(auth: String, filter: JSONObject): Observable<List<CustomerAPIModel>> {
+        return service.getCustomerList(auth, filter)
+    }
+
+    fun postCustomer(auth: String, name: String, phone: String, address: String, remarks: String): Observable<CustomerAPIEntity> {
+        return service.postCustomer(auth, name, phone, address, remarks)
+    }
+
+    fun postUpdateCustomer(auth: String, where: JSONObject, data: JsonObject): Observable<CustomerAPIEntity> {
+        return service.postUpdateCustomer(auth, where, data)
+    }
+
+    fun deleteCustomer(auth: String, id: Int): Observable<CustomerAPIEntity> {
+        return service.deleteCustomer(auth, id)
     }
 }

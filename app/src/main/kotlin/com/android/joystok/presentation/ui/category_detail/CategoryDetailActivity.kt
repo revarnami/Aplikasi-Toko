@@ -40,7 +40,7 @@ class CategoryDetailActivity : AppCompatActivity(), CategoryDetailView {
         val extras = intent.extras
         categoryId = extras.getInt(Constants.IDS().CATEGORY_ID_KEY)
         categoryName = extras.getString(Constants.IDS().CATEGORY_NAME_KEY)
-        remarks = extras.getString(Constants.IDS().REMARKS_KEY)
+        remarks = extras.getString(Constants.IDS().CATEGORY_REMARKS_KEY)
         if (categoryId == Constants.IDS().ADD_ID) {
             createUpdateCategoryBtn.text = getString(R.string.add)
             createUpdateCategoryBtn.setOnClickListener {

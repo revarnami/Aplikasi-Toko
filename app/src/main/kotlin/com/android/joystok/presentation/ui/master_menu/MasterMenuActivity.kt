@@ -11,6 +11,7 @@ import com.android.joystok.presentation.internal.di.components.DaggerActivityCom
 import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.navigation.navigateBackToMainPage
 import com.android.joystok.presentation.navigation.navigateToMasterCategory
+import com.android.joystok.presentation.navigation.navigateToMasterCustomer
 import kotlinx.android.synthetic.main.activity_master_menu.*
 import javax.inject.Inject
 
@@ -37,6 +38,9 @@ class MasterMenuActivity : AppCompatActivity(), MasterMenuView {
 
         masterCategoryBtn.setOnClickListener {
             navigateToMasterCategory(this)
+        }
+        masterCustomerBtn.setOnClickListener {
+            navigateToMasterCustomer(this)
         }
     }
 

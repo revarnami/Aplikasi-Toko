@@ -1,6 +1,7 @@
 package com.android.joystok.data.net
 
 import com.android.joystok.data.entity.*
+import com.android.joystok.domain.model.CustomerAPIModel
 import com.android.joystok.domain.model.ItemCategoryAPIModel
 import com.google.gson.JsonObject
 import org.json.JSONObject
@@ -36,6 +37,24 @@ interface JoystokService {
             @Body data: JsonObject
     ): Observable<ItemCategoryAPIEntity>
 
+    @FormUrlEncoded
+    @POST("Customer")
+    fun postCustomer(
+            @Header("authorization") authorization: String,
+            @Field("name") name: String,
+            @Field("phone") phone: String,
+            @Field("address") address: String,
+            @Field("remarks") remarks: String
+    ): Observable<CustomerAPIEntity>
+
+    @Headers("Content-Type: application/json")
+    @POST("Customer/update")
+    fun postUpdateCustomer(
+            @Header("authorization") authorization: String,
+            @Query("where") where: JSONObject,
+            @Body data: JsonObject
+    ): Observable<CustomerAPIEntity>
+
     //Get Section
     @GET("Users/{id}")
     fun getUser(
@@ -62,7 +81,7 @@ interface JoystokService {
     @GET("ItemCategory")
     fun getItemCategoryList(
             @Header("authorization") authorization: String,
-            @Query("filter") filter: JSONObject
+            @Query("where") filter: JSONObject
     ): Observable<List<ItemCategoryAPIModel>>
 
     @GET("ItemCategory/findOne")
@@ -71,10 +90,22 @@ interface JoystokService {
             @Query("categoryName") categoryName: JSONObject
     ): Observable<List<ItemCategoryAPIModel>>
 
+    @GET("Customer")
+    fun getCustomerList(
+            @Header("authorization") authorization: String,
+            @Query("where") filter: JSONObject
+    ): Observable<List<CustomerAPIModel>>
+
     //Delete Section
     @DELETE("ItemCategory/{id}")
     fun deleteCategory(
             @Header("authorization") authorization: String,
             @Path("id") id: Int
     ): Observable<ItemCategoryAPIEntity>
+
+    @DELETE("Customer/{id}")
+    fun deleteCustomer(
+            @Header("authorization") authorization: String,
+            @Path("id") id: Int
+    ): Observable<CustomerAPIEntity>
 }

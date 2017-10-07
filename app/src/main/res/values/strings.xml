@@ -31,4 +31,7 @@
     <string name="delete">Hapus</string>
     <string name="add">Tambah</string>
     <string name="update">Ubah</string>
+    <string name="name">Nama</string>
+    <string name="phone">Telp</string>
+    <string name="address">Alamat</string>
 </resources>

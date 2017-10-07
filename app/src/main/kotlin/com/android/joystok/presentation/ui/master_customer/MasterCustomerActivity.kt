@@ -1,4 +1,4 @@
-package com.android.joystok.presentation.ui.master_category
+package com.android.joystok.presentation.ui.master_customer
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,23 +7,23 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.View
 import com.android.joystok.R
-import com.android.joystok.domain.model.ItemCategoryAPIModel
+import com.android.joystok.domain.model.CustomerAPIModel
 import com.android.joystok.presentation.AndroidApplication
 import com.android.joystok.presentation.internal.di.components.ActivityComponent
 import com.android.joystok.presentation.internal.di.components.DaggerActivityComponent
 import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.navigation.navigateBackToMasterMenu
-import com.android.joystok.presentation.navigation.navigateToCategoryDetail
+import com.android.joystok.presentation.navigation.navigateToCustomerDetail
 import com.android.joystok.utilities.Constants
-import kotlinx.android.synthetic.main.activity_master_category.*
+import kotlinx.android.synthetic.main.activity_master_customer.*
 import org.json.JSONObject
 import javax.inject.Inject
 
-class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
+class MasterCustomerActivity : AppCompatActivity(), MasterCustomerView {
     private val TAG = "MasterCategoryActivity"
 
     @Inject
-    lateinit var presenter: MasterCategoryPresenter
+    lateinit var presenter: MasterCustomerPresenter
 
     private val component: ActivityComponent
         get() = DaggerActivityComponent.builder()
@@ -33,16 +33,16 @@ class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_master_category)
+        setContentView(R.layout.activity_master_customer)
         component.inject(this)
         presenter.view = this
         val filter = JSONObject()
-        filter.put("categoryName", "")
+        filter.put("name", "")
         presenter.onGetList(filter)
         setupToolbar()
 
-        masterCategoryFAB.setOnClickListener {
-            navigateToCategoryDetail(this, Constants.IDS().ADD_ID, "", "")
+        masterCustomerFAB.setOnClickListener {
+            navigateToCustomerDetail(this, Constants.IDS().ADD_ID, "", "", "", "")
         }
     }
 
@@ -51,7 +51,7 @@ class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.master_category_menu, menu)
+        menuInflater.inflate(R.menu.master_customer_menu, menu)
         val myActionMenuItem = menu?.findItem(R.id.search)
         val searchView = myActionMenuItem?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -61,7 +61,7 @@ class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
                 }
                 myActionMenuItem.collapseActionView()
                 val filter = JSONObject()
-                filter.put("categoryName", query)
+                filter.put("name", query)
                 presenter.onGetList(filter)
                 return false
             }
@@ -74,18 +74,18 @@ class MasterCategoryActivity : AppCompatActivity(), MasterCatergoryView {
         return true
     }
 
-    override fun showListCategory(list: List<ItemCategoryAPIModel>) {
-        masterCategoryRV.visibility = View.VISIBLE
-        masterCategoryRV.setHasFixedSize(true)
+    override fun showListCustomer(list: List<CustomerAPIModel>) {
+        masterCustomerRV.visibility = View.VISIBLE
+        masterCustomerRV.setHasFixedSize(true)
         val llm = LinearLayoutManager(this)
-        masterCategoryRV.layoutManager = llm
-        val adapter = MasterCategoryRVAdapter(this, list)
-        masterCategoryRV.adapter = adapter
+        masterCustomerRV.layoutManager = llm
+        val adapter = MasterCustomerRVAdapter(this, list)
+        masterCustomerRV.adapter = adapter
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(masterCategoryToolbar)
+        setSupportActionBar(masterCustomerToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
-        title = getString(R.string.master_category)
+        title = getString(R.string.master_customer)
     }
 }

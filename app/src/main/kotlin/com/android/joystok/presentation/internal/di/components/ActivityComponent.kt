@@ -3,9 +3,11 @@ package com.android.joystok.presentation.internal.di.components
 import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.internal.di.scope.PerActivity
 import com.android.joystok.presentation.ui.category_detail.CategoryDetailActivity
+import com.android.joystok.presentation.ui.customer_detail.CustomerDetailActivity
 import com.android.joystok.presentation.ui.login.LoginActivity
 import com.android.joystok.presentation.ui.main.MainActivity
 import com.android.joystok.presentation.ui.master_category.MasterCategoryActivity
+import com.android.joystok.presentation.ui.master_customer.MasterCustomerActivity
 import com.android.joystok.presentation.ui.master_menu.MasterMenuActivity
 import dagger.Component
 
@@ -20,5 +22,7 @@ interface ActivityComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(masterMenuActivity: MasterMenuActivity)
     fun inject(masterCategoryActivity: MasterCategoryActivity)
+    fun inject(masterCategoryActivity: MasterCustomerActivity)
     fun inject(categoryDetailActivity: CategoryDetailActivity)
+    fun inject(customerDetailActivity: CustomerDetailActivity)
 }

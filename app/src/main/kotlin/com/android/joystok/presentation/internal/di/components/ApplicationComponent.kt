@@ -44,4 +44,6 @@ interface ApplicationComponent {
     fun branchRepository(): BranchRepository
 
     fun itemCategoryRepository(): ItemCategoryRepository
+
+    fun customerRepository(): CustomerRepository
 }

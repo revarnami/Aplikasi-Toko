@@ -85,4 +85,10 @@ class ApplicationModule(private val androidApplication: AndroidApplication) {
     fun provideItemCategoryRepository(dataRepository: CategoryDataRepository): ItemCategoryRepository {
         return dataRepository
     }
+
+    @Provides
+    @Singleton
+    fun provideCustomerRepository(dataRepository: CustomerDataRepository): CustomerRepository {
+        return dataRepository
+    }
 }
