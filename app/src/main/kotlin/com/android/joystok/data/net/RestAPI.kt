@@ -3,7 +3,9 @@ package com.android.joystok.data.net
 import com.android.joystok.BuildConfig
 import com.android.joystok.data.entity.*
 import com.android.joystok.domain.model.CustomerAPIModel
+import com.android.joystok.domain.model.ItemAPIModel
 import com.android.joystok.domain.model.ItemCategoryAPIModel
+import com.android.joystok.domain.model.ItemVariantAPIModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import okhttp3.Interceptor
@@ -44,59 +46,50 @@ constructor() {
 
     fun postLogin(username: String,
                   password: String
-    ): Observable<LoginAPIEntity> {
-        return service.postLogin(username, password)
-    }
+    ): Observable<LoginAPIEntity> = service.postLogin(username, password)
 
-    fun getUser(id: String): Observable<UserAPIEntity> {
-        return service.getUser(id)
-    }
+    fun getUser(id: String): Observable<UserAPIEntity> = service.getUser(id)
 
-    fun getUserInfo(id: String): Observable<UserAPIEntity> {
-        return service.getUserInfo(id)
-    }
+    fun getUserInfo(id: String): Observable<UserAPIEntity> = service.getUserInfo(id)
 
-    fun getCompany(auth: String, id: Int): Observable<CompanyAPIEntity> {
-        return service.getCompany(auth, id)
-    }
+    fun getCompany(auth: String, id: Int): Observable<CompanyAPIEntity> = service.getCompany(auth, id)
 
-    fun getBranch(auth: String, id: Int): Observable<BranchAPIEntity> {
-        return service.getBranch(auth, id)
-    }
+    fun getBranch(auth: String, id: Int): Observable<BranchAPIEntity> = service.getBranch(auth, id)
 
-    fun getItemCategoryList(auth: String, filter: JSONObject): Observable<List<ItemCategoryAPIModel>> {
-        return service.getItemCategoryList(auth, filter)
-    }
+    fun getItemCategoryList(auth: String, filter: JSONObject): Observable<List<ItemCategoryAPIModel>> = service.getItemCategoryList(auth, filter)
 
-    fun postCategory(auth: String, categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> {
-        return service.postCategory(auth, categoryName, remarks)
-    }
+    fun postCategory(auth: String, categoryName: String, remarks: String): Observable<ItemCategoryAPIEntity> = service.postCategory(auth, categoryName, remarks)
 
-    fun postUpdateCategory(auth: String, where: JSONObject, data: JsonObject): Observable<ItemCategoryAPIEntity> {
-        return service.postUpdateCategory(auth, where, data)
-    }
+    fun postUpdateCategory(auth: String, where: JSONObject, data: JsonObject): Observable<ItemCategoryAPIEntity> = service.postUpdateCategory(auth, where, data)
 
-    fun deleteCategory(auth: String, id: Int): Observable<ItemCategoryAPIEntity> {
-        return service.deleteCategory(auth, id)
-    }
+    fun deleteCategory(auth: String, id: Int): Observable<ItemCategoryAPIEntity> = service.deleteCategory(auth, id)
 
-    fun findCategoryName(auth: String, categoryName: JSONObject): Observable<List<ItemCategoryAPIModel>> {
-        return service.findCategoryName(auth, categoryName)
-    }
+    fun findCategoryName(auth: String, categoryName: JSONObject): Observable<List<ItemCategoryAPIModel>> = service.findCategoryName(auth, categoryName)
 
-    fun getCustomerList(auth: String, filter: JSONObject): Observable<List<CustomerAPIModel>> {
-        return service.getCustomerList(auth, filter)
-    }
+    fun getCustomerList(auth: String, filter: JSONObject): Observable<List<CustomerAPIModel>> = service.getCustomerList(auth, filter)
 
-    fun postCustomer(auth: String, name: String, phone: String, address: String, remarks: String): Observable<CustomerAPIEntity> {
-        return service.postCustomer(auth, name, phone, address, remarks)
-    }
+    fun postCustomer(auth: String, name: String, phone: String, address: String, remarks: String): Observable<CustomerAPIEntity> =
+            service.postCustomer(auth, name, phone, address, remarks)
 
-    fun postUpdateCustomer(auth: String, where: JSONObject, data: JsonObject): Observable<CustomerAPIEntity> {
-        return service.postUpdateCustomer(auth, where, data)
-    }
+    fun postUpdateCustomer(auth: String, where: JSONObject, data: JsonObject): Observable<CustomerAPIEntity> = service.postUpdateCustomer(auth, where, data)
 
-    fun deleteCustomer(auth: String, id: Int): Observable<CustomerAPIEntity> {
-        return service.deleteCustomer(auth, id)
-    }
+    fun deleteCustomer(auth: String, id: Int): Observable<CustomerAPIEntity> = service.deleteCustomer(auth, id)
+
+    fun getItemList(auth: String, filter: JSONObject): Observable<List<ItemAPIModel>> = service.getItemList(auth, filter)
+
+    fun postItem(auth: String, data: JsonObject): Observable<ItemAPIEntity> = service.postItem(auth, data)
+
+    fun postItemVariant(auth: String, itemId: Int, variantName: String): Observable<ItemVariantAPIEntity> = service.postItemVariant(auth, itemId, variantName)
+
+    fun postVariantStock(authorization: String,
+                         itemVariantId: Int,
+                         quantity: Int,
+                         branchId: Int
+    ): Observable<VariantStockAPIEntity> = service.postItemVariantStock(authorization, itemVariantId, quantity, branchId)
+
+    fun getCategoryByItemId(auth: String, id: String): Observable<ItemCategoryAPIEntity> = service.getItemCategoryByItemId(auth, id)
+
+    fun getVariantByItemId(auth: String, id: String): Observable<List<ItemVariantAPIModel>> = service.getVariantByItemId(auth, id)
+
+    fun getStockByVariantId(auth: String, id: String): Observable<VariantStockAPIEntity> = service.getStockByVariantId(auth, id)
 }

@@ -34,4 +34,10 @@
     <string name="name">Nama</string>
     <string name="phone">Telp</string>
     <string name="address">Alamat</string>
+    <string name="code">Kode</string>
+    <string name="sale_price">Harga Jual</string>
+    <string name="base_price">Harga Modal</string>
+    <string name="add_item">Tambah Barang</string>
+    <string name="add_variant">Tambah Variant</string>
+    <string name="update_item">Update Barang</string>
 </resources>

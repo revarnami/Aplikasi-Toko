@@ -46,4 +46,10 @@ interface ApplicationComponent {
     fun itemCategoryRepository(): ItemCategoryRepository
 
     fun customerRepository(): CustomerRepository
+
+    fun itemRepository(): ItemRepository
+
+    fun itemVariantRepository(): ItemVariantRepository
+
+    fun variantStockRepository(): VariantStockRepository
 }

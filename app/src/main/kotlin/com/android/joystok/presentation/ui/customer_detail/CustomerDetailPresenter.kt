@@ -41,7 +41,7 @@ constructor(private val addCustomerUseCase: AddCustomerUseCase,
         )
     }
 
-    fun updateCategory(where: JSONObject, data: JsonObject) {
+    fun updateCustomer(where: JSONObject, data: JsonObject) {
         updateCustomerUseCase.auth = DBHelper().getToken()
         updateCustomerUseCase.where = where
 

@@ -22,73 +22,61 @@ import javax.inject.Singleton
 class ApplicationModule(private val androidApplication: AndroidApplication) {
     @Provides
     @Singleton
-    fun application(): AndroidApplication {
-        return androidApplication
-    }
+    fun application(): AndroidApplication = androidApplication
 
     @Provides
     @Singleton
-    fun provideApplicationContext(): Context {
-        return androidApplication
-    }
+    fun provideApplicationContext(): Context = androidApplication
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(): SharedPreferences {
-        return androidApplication.getSharedPreferences(Constants().PrefKey, Context.MODE_APPEND)
-    }
+    fun provideSharedPreferences(): SharedPreferences = androidApplication.getSharedPreferences(Constants().PrefKey, Context.MODE_APPEND)
 
     @Provides
     @Singleton
-    fun provideSharedPreferencesEditor(): SharedPreferences.Editor {
-        return androidApplication.getSharedPreferences(Constants().PrefKey, Context.MODE_APPEND).edit()
-    }
+    fun provideSharedPreferencesEditor(): SharedPreferences.Editor = androidApplication.getSharedPreferences(Constants().PrefKey, Context.MODE_APPEND).edit()
 
     @Provides
     @Singleton
-    fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor {
-        return jobExecutor
-    }
+    fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor = jobExecutor
 
     @Provides
     @Singleton
-    fun providePostExecutionThread(uiThread: UIThread): PostExecutionThread {
-        return uiThread
-    }
+    fun providePostExecutionThread(uiThread: UIThread): PostExecutionThread = uiThread
 
     @Provides
     @Singleton
-    fun provideLoginRepository(dataRepository: LoginDataRepository): LoginRepository {
-        return dataRepository
-    }
+    fun provideLoginRepository(dataRepository: LoginDataRepository): LoginRepository = dataRepository
 
     @Provides
     @Singleton
-    fun provideUserRepository(dataRepository: UserDataRepository): UserRepository {
-        return dataRepository
-    }
+    fun provideUserRepository(dataRepository: UserDataRepository): UserRepository = dataRepository
 
     @Provides
     @Singleton
-    fun provideCompanyRepository(dataRepository: CompanyDataRepository): CompanyRepository {
-        return dataRepository
-    }
+    fun provideCompanyRepository(dataRepository: CompanyDataRepository): CompanyRepository = dataRepository
 
     @Provides
     @Singleton
-    fun provideBranchRepository(dataRepository: BranchDataRepository): BranchRepository {
-        return dataRepository
-    }
+    fun provideBranchRepository(dataRepository: BranchDataRepository): BranchRepository = dataRepository
 
     @Provides
     @Singleton
-    fun provideItemCategoryRepository(dataRepository: CategoryDataRepository): ItemCategoryRepository {
-        return dataRepository
-    }
+    fun provideItemCategoryRepository(dataRepository: CategoryDataRepository): ItemCategoryRepository = dataRepository
 
     @Provides
     @Singleton
-    fun provideCustomerRepository(dataRepository: CustomerDataRepository): CustomerRepository {
-        return dataRepository
-    }
+    fun provideCustomerRepository(dataRepository: CustomerDataRepository): CustomerRepository = dataRepository
+
+    @Provides
+    @Singleton
+    fun provideItemRepository(dataRepository: ItemDataRepository): ItemRepository = dataRepository
+
+    @Provides
+    @Singleton
+    fun provideItemVariantRepository(dataRepository: ItemVariantDataRepository): ItemVariantRepository = dataRepository
+
+    @Provides
+    @Singleton
+    fun provideVariantStockRepository(dataRepository: VariantStockDataRepository): VariantStockRepository = dataRepository
 }

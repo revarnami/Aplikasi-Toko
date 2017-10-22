@@ -99,4 +99,15 @@ class DBHelper {
             return ""
         }
     }
+
+    fun getBranchId(): Int {
+        val savedBranch: BranchAPIEntity? = RealmQuery.createQuery(realm, BranchAPIEntity::class.java)
+                .findFirst()
+        if (savedBranch != null) {
+            return savedBranch.id
+        }
+        else {
+            return 0
+        }
+    }
 }

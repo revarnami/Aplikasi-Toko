@@ -5,11 +5,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.android.joystok.R.anim.*
+import com.android.joystok.domain.model.ItemAPIModel
 import com.android.joystok.presentation.ui.category_detail.CategoryDetailActivity
 import com.android.joystok.presentation.ui.customer_detail.CustomerDetailActivity
+import com.android.joystok.presentation.ui.item_detail.ItemDetailActivity
 import com.android.joystok.presentation.ui.main.MainActivity
 import com.android.joystok.presentation.ui.master_category.MasterCategoryActivity
 import com.android.joystok.presentation.ui.master_customer.MasterCustomerActivity
+import com.android.joystok.presentation.ui.master_item.MasterItemActivity
 import com.android.joystok.presentation.ui.master_menu.MasterMenuActivity
 import com.android.joystok.utilities.Constants
 import javax.inject.Inject
@@ -88,6 +91,28 @@ fun navigateToCustomerDetail(context: Context?, customerId: Int, name: String, p
     }
 }
 
+fun navigateToMasterItem(context: Context?) {
+    if (context != null && context is Activity) {
+        val activity = context
+        val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        activity.start<MasterItemActivity>(flags, right_in, left_out)
+    }
+}
+
+fun navigateToItemDetail(context: Context?, itemModel: ItemAPIModel) {
+    if (context != null && context is Activity) {
+        val activity = context
+        val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val extras = Bundle()
+//        extras.putInt(Constants.IDS().ITEM_ID_KEY, itemId)
+        extras.putSerializable(Constants.IDS().ITEM_MODEL_KEY, itemModel)
+//        extras.putString(Constants.IDS().CUSTOMER_NAME_KEY, name)
+//        extras.putString(Constants.IDS().CUSTOMER_PHONE_KEY, phone)
+//        extras.putString(Constants.IDS().CUSTOMER_ADDRESS_KEY, address)
+//        extras.putString(Constants.IDS().CUSTOMER_REMARKS_KEY, remarks)
+        activity.start<ItemDetailActivity>(extras, flags, right_in, left_out)
+    }
+}
 
 //Navigate back
 fun navigateBackToMainPage(context: Context?) {
@@ -119,5 +144,13 @@ fun navigateBackToMasterCustomerPage(context: Context?) {
         val activity = context
         val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
         activity.start<MasterCustomerActivity>(flags, left_in, right_out)
+    }
+}
+
+fun navigateBackToMasterItemPage(context: Context?) {
+    if (context != null && context is Activity) {
+        val activity = context
+        val flags = context.flags(Intent.FLAG_ACTIVITY_NEW_TASK, Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        activity.start<MasterItemActivity>(flags, left_in, right_out)
     }
 }

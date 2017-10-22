@@ -12,6 +12,7 @@ import com.android.joystok.presentation.internal.di.module.ActivityModule
 import com.android.joystok.presentation.navigation.navigateBackToMainPage
 import com.android.joystok.presentation.navigation.navigateToMasterCategory
 import com.android.joystok.presentation.navigation.navigateToMasterCustomer
+import com.android.joystok.presentation.navigation.navigateToMasterItem
 import kotlinx.android.synthetic.main.activity_master_menu.*
 import javax.inject.Inject
 
@@ -35,6 +36,10 @@ class MasterMenuActivity : AppCompatActivity(), MasterMenuView {
         component.inject(this)
         presenter.view = this
         presenter.onGetUser(DBHelper().getUserId())
+
+        masterGoodsBtn.setOnClickListener {
+            navigateToMasterItem(this)
+        }
 
         masterCategoryBtn.setOnClickListener {
             navigateToMasterCategory(this)

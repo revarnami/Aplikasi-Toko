@@ -73,7 +73,7 @@ class CustomerDetailActivity : AppCompatActivity(), CustomerDetailView {
                 data.addProperty("phone", phone)
                 data.addProperty("address", address)
                 data.addProperty("remarks", remarks)
-                presenter.updateCategory(where, data)
+                presenter.updateCustomer(where, data)
             }
             deleteCustomerBtn.visibility = View.VISIBLE
             deleteCustomerBtn.setOnClickListener {
