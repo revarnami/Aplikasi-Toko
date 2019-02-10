@@ -31,12 +31,16 @@ constructor(private val addItemUseCase: AddItemUseCase,
 
     var view: ItemDetailView? = null
 
-    fun addItem(data: JsonObject) {
+    fun addItem(data: JsonObject, state: Int) {
         addItemUseCase.auth = DBHelper().getToken()
         addItemUseCase.data = data
         addItemUseCase.execute(useCaseSubscriber = FunctionSubscriber<ItemAPIModel>()
                 .onNext {
-                    view!!.showMessage("Berhasil menambahkan item")
+                    if (state == 0) {
+                        view!!.showMessage("Berhasil menambahkan item")
+                    } else {
+                        view!!.showMessage("Berhasil edit item")
+                    }
                 }
                 .onError {
                     Log.e(TAG, "onAddItem: error")

@@ -32,6 +32,7 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailView, AdapterView.OnIt
     private var itemCode: String = ""
     private var categoryId: Int = 1
     private var itemName: String = ""
+    private var supplier: String = ""
     private var basePrice: Int = 0
     private var salePrice: Int = 0
     private var isVariant: Boolean = false
@@ -61,15 +62,15 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailView, AdapterView.OnIt
         val extras = intent.extras
         itemModel = extras.getSerializable(Constants.IDS().ITEM_MODEL_KEY) as ItemAPIModel
         itemId = itemModel.id!!
-        Log.e(TAG, "onCreate: itemId = ${itemModel.id}")
+        var state = 0
         if (itemId == Constants.IDS().ADD_ID) {
             isVariantItemDetailCB.visibility = View.GONE
             addItemVariantBtn.visibility = View.GONE
             itemVarianDetailRV.visibility = View.GONE
             stockItemDetailET.visibility = View.VISIBLE
             addUpdateItemBtn.text = getString(R.string.add_item)
+            state = 0
         } else {
-            Log.e(TAG, "onCreate: itemCode = ${itemModel.itemCode}")
             itemCodeItemDetailET.setText(itemModel.itemCode)
             itemNameItemDetailET.setText(itemModel.itemName)
             //combobox
@@ -91,34 +92,49 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailView, AdapterView.OnIt
             stockItemDetailET.setText(itemModel.stock.toString())
             supplierItemDetailET.setText(itemModel.supplier)
             isVariantItemDetailCB.isChecked = itemModel.isVariant!!
+            state = 1
         }
 
         addUpdateItemBtn.setOnClickListener {
-            itemCode = itemCodeItemDetailET.text.toString()
-            itemName = itemNameItemDetailET.text.toString()
-            basePrice = basePriceItemDetailET.text.toString().toInt()
-            salePrice = salePriceItemDetailET.text.toString().toInt()
-            quantity = stockItemDetailET.text.toString().toInt()
-            val itemVariantStock = JsonObject()
-            itemVariantStock.addProperty("branchId", DBHelper().getBranchId())
-            itemVariantStock.addProperty("quantity", quantity)
-            val itemVariantObj = JsonObject()
-            itemVariantObj.addProperty("variantName", "")
-            itemVariantObj.add("itemVariantStock", itemVariantStock)
-            val itemVariants = JsonArray()
-            itemVariants.add(itemVariantObj)
-            val data = JsonObject()
-            data.addProperty("itemCode", itemCode)
-            data.addProperty("itemName", itemName)
-            data.addProperty("categoryId", 33)
-            data.addProperty("basePrice", basePrice)
-            data.addProperty("salePrice", salePrice)
-            data.addProperty("remarks", remarks)
-            data.addProperty("inactive", true)
-            isVariant = isVariantItemDetailCB.isChecked
-            data.addProperty("isVariant", isVariant)
-            data.add("itemVariant", itemVariants)
-            presenter.addItem(data)
+            if (
+                    itemCodeItemDetailET.text.toString().isNotEmpty() &&
+                    itemNameItemDetailET.text.toString().isNotEmpty() &&
+                    basePriceItemDetailET.text.toString().isNotEmpty() &&
+                    salePriceItemDetailET.text.toString().isNotEmpty() &&
+                    stockItemDetailET.text.toString().isNotEmpty()&&
+                    supplierItemDetailET.text.toString().isNotEmpty()
+
+            ) {
+                itemCode = itemCodeItemDetailET.text.toString()
+                itemName = itemNameItemDetailET.text.toString()
+                basePrice = basePriceItemDetailET.text.toString().toInt()
+                salePrice = salePriceItemDetailET.text.toString().toInt()
+                quantity = stockItemDetailET.text.toString().toInt()
+                supplier = supplierItemDetailET.text.toString()
+                val itemVariantStock = JsonObject()
+                itemVariantStock.addProperty("branchId", DBHelper().getBranchId())
+                itemVariantStock.addProperty("quantity", quantity)
+                val itemVariantObj = JsonObject()
+                itemVariantObj.addProperty("variantName", "")
+                itemVariantObj.add("itemVariantStock", itemVariantStock)
+                val itemVariants = JsonArray()
+                itemVariants.add(itemVariantObj)
+                val data = JsonObject()
+                data.addProperty("itemCode", itemCode)
+                data.addProperty("itemName", itemName)
+                data.addProperty("supplier", supplier)
+                data.addProperty("categoryId", 33)
+                data.addProperty("basePrice", basePrice)
+                data.addProperty("salePrice", salePrice)
+                data.addProperty("remarks", remarks)
+                data.addProperty("inactive", true)
+                isVariant = isVariantItemDetailCB.isChecked
+                data.addProperty("isVariant", isVariant)
+                data.add("itemVariant", itemVariants)
+                presenter.addItem(data, state)
+            } else {
+                Utils().snackBarNoAction(rootItemDetailCL, "Pastikan semua informasi telah di isi")
+            }
         }
     }
 
