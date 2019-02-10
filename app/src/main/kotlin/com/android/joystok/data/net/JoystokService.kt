@@ -158,4 +158,10 @@ interface JoystokService {
             @Header("authorization") authorization: String,
             @Path("id") id: Int
     ): Observable<CustomerAPIEntity>
+
+    @DELETE("Customer")
+    fun deleteItem(
+            @Header("authorization") authorization: String,
+            @Path("id") id: Int
+    ): Observable<CustomerAPIEntity>
 }

@@ -25,10 +25,16 @@ open class ItemAPIEntity : RealmObject() {
     open var itemName: String? = ""
 
     @Expose
+    open var supplier: String? = ""
+
+    @Expose
     open var basePrice: Int? = 0
 
     @Expose
     open var salePrice: Int? = 0
+
+    @Expose
+    open var stock: Int? = 0
 
     @Expose
     open var remarks: String? = ""

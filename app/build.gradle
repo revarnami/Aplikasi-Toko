@@ -13,6 +13,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -20,7 +21,6 @@ android {
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
     compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
-    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
 
     defaultConfig {
         applicationId globalConfiguration.getAt("androidApplicationId")
@@ -33,7 +33,8 @@ android {
 
         multiDexEnabled true
 
-        buildConfigField 'String', 'SERVER_URL', '"http://sg1.kadena.co.id:3000/api/"'
+//        buildConfigField 'String', 'SERVER_URL', '"http://sg1.kadena.co.id:3000/api/"'
+        buildConfigField 'String', 'SERVER_URL', '"https://private-526950-tokoaplikasi.apiary-mock.com/"'
     }
 
     aaptOptions {
@@ -97,36 +98,36 @@ dependencies {
 
 
     kapt presentationDependencies.daggerCompiler
-    compile presentationDependencies.dagger
-    compile presentationDependencies.supportRecyclerView
-    compile presentationDependencies.supportCardView
-    compile presentationDependencies.supportGridLayout
-    compile presentationDependencies.supportDesign
-    compile presentationDependencies.supportAppCompat
-    compile presentationDependencies.rxJava
-    compile presentationDependencies.rxAndroid
-    compile presentationDependencies.glide
-    compile presentationDependencies.rxKotlin
-    compile presentationDependencies.constraintLayout
+        implementation presentationDependencies.dagger
+    implementation presentationDependencies.supportRecyclerView
+    implementation presentationDependencies.supportCardView
+    implementation presentationDependencies.supportGridLayout
+    implementation presentationDependencies.supportDesign
+    implementation presentationDependencies.supportAppCompat
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.glide
+    implementation presentationDependencies.rxKotlin
+    implementation presentationDependencies.constraintLayout
 
-    provided presentationDependencies.javaxAnnotation
+    compileOnly presentationDependencies.javaxAnnotation
 
-    compile dataDependencies.retrofit2
-    compile dataDependencies.retrofit2Converter
-    compile dataDependencies.retrofit2RxAdapter
-    compile dataDependencies.gson
-    compile dataDependencies.supportAnnotations
-    compile dataDependencies.okHttpLoggingInterceptor
+    implementation dataDependencies.retrofit2
+    implementation dataDependencies.retrofit2Converter
+    implementation dataDependencies.retrofit2RxAdapter
+    implementation dataDependencies.gson
+    implementation dataDependencies.supportAnnotations
+    implementation dataDependencies.okHttpLoggingInterceptor
 
-    androidTestCompile presentationTestDependencies.mockito
-    androidTestCompile presentationTestDependencies.dexmaker
-    androidTestCompile presentationTestDependencies.dexmakerMockito
-    androidTestCompile presentationTestDependencies.espresso
-    androidTestCompile presentationTestDependencies.espressoIntents
-    androidTestCompile presentationTestDependencies.testingRunner
-    androidTestCompile presentationTestDependencies.testingRules
-    androidTestCompile presentationTestDependencies.supportAnnotations
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    androidTestImplementation presentationTestDependencies.mockito
+    androidTestImplementation presentationTestDependencies.dexmaker
+    androidTestImplementation presentationTestDependencies.dexmakerMockito
+    androidTestImplementation presentationTestDependencies.espresso
+    androidTestImplementation presentationTestDependencies.espressoIntents
+    androidTestImplementation presentationTestDependencies.testingRunner
+    androidTestImplementation presentationTestDependencies.testingRules
+    androidTestImplementation presentationTestDependencies.supportAnnotations
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 kapt {

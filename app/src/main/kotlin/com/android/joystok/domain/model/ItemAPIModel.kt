@@ -11,6 +11,8 @@ open class ItemAPIModel : Serializable {
     open var itemCode: String? = ""
     open var categoryId: Int? = 0
     open var itemName: String? = ""
+    open var supplier: String? = ""
+    open var stock: Int? = 0
     open var basePrice: Int? = 0
     open var salePrice: Int? = 0
     open var remarks: String? = ""

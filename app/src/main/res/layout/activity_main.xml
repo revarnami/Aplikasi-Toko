@@ -53,6 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/storeNameTV" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/purchasingIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
@@ -64,6 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/masterDataIV"/>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/purchasingBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"
@@ -78,6 +80,7 @@
         app:layout_constraintTop_toBottomOf="@id/masterDataBtn" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/sellingIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
@@ -89,6 +92,7 @@
         app:layout_constraintTop_toBottomOf="@id/purchasingIV"/>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/sellingBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"
@@ -103,6 +107,7 @@
         app:layout_constraintTop_toBottomOf="@id/purchasingBtn" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/stockIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
@@ -114,6 +119,7 @@
         app:layout_constraintTop_toBottomOf="@id/sellingIV"/>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/stockBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"
@@ -128,6 +134,7 @@
         app:layout_constraintTop_toBottomOf="@id/sellingBtn" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/reportIV"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/main_row_item_height"
@@ -139,6 +146,7 @@
         app:layout_constraintTop_toBottomOf="@id/stockIV"/>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/reportBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/main_row_item_height"

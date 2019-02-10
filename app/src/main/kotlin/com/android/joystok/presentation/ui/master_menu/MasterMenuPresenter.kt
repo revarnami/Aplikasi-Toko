@@ -1,9 +1,6 @@
 package com.android.joystok.presentation.ui.master_menu
 
 import android.util.Log
-import com.android.joystok.data.cache.DBHelper
-import com.android.joystok.domain.model.BranchAPIModel
-import com.android.joystok.domain.model.CompanyAPIModel
 import com.android.joystok.domain.model.UserAPIModel
 import com.android.joystok.domain.using_cases.BranchUseCase
 import com.android.joystok.domain.using_cases.CompanyUseCase
@@ -33,33 +30,6 @@ constructor(private val userUseCase: UserUseCase,
         userUseCase.id = id.toString()
         userUseCase.execute(FunctionSubscriber<UserAPIModel>()
                 .onNext {
-                    userInfoUseCase.id = id.toString()
-                    userInfoUseCase.execute(FunctionSubscriber<UserAPIModel>()
-                            .onNext {
-                                branchUseCase.id = it.branchId
-                                branchUseCase.auth = DBHelper().getToken()
-                                branchUseCase.execute(FunctionSubscriber<BranchAPIModel>()
-                                        .onNext {
-                                            companyUseCase.id = it.companyId
-                                            companyUseCase.auth = DBHelper().getToken()
-                                            companyUseCase.execute(FunctionSubscriber<CompanyAPIModel>()
-                                                    .onNext {
-                                                        view!!.showBranchInfo(DBHelper().getBranchName(), it.companyCode)
-                                                    }
-                                                    .onError {
-                                                        Log.e(TAG, "onGetUser: error")
-                                                    }
-                                            )
-                                        }
-                                        .onError {
-                                            Log.e(TAG, "onGetUser: error")
-                                        }
-                                )
-                            }
-                            .onError {
-                                Log.e(TAG, "onGetUser: error")
-                            }
-                    )
                     view!!.showWelcomeMessage(it.username)
                 }
                 .onError {

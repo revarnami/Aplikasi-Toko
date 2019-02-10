@@ -4,9 +4,10 @@ project.version = '1.0.0'
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.+'
+        classpath 'com.android.tools.build:gradle:3.3.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
@@ -22,11 +23,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 27
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 27
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -35,11 +35,12 @@ android {
 
     // Rename the aar correctly
     libraryVariants.all { variant ->
-        variant.outputs.each { output ->
+        variant.outputs.all { output ->
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.aar')) {
                 def fileName = "${project.name}-${variant.baseName}-${version}.aar"
-                output.outputFile = new File(outputFile.parent, fileName)
+                outputFileName = fileName
+//                outputFileName = new File(outputFile.parent, fileName)
             }
         }
     }
@@ -82,7 +83,7 @@ afterEvaluate {
         task.from variant.javaCompile.destinationDir
         task.destinationDir = project.file("${project.buildDir}/outputs/jar")
         task.archiveName = "${project.name}-${variant.baseName}-${version}.jar"
-        artifacts.add('archives', task);
+        artifacts.add('archives', task)
     }
 }
 

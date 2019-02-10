@@ -12,8 +12,8 @@
         android:layout_height="match_parent"
         tools:context="com.android.joystok.presentation.ui.item_detail.ItemDetailActivity">
 
-        <EditText
-            android:id="@+id/itemCodeItemDetailET"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/itemCodeItemDetailTIL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -21,15 +21,22 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/code"
-            android:inputType="text"
-            android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/itemNameItemDetailET"
+            <EditText
+                android:id="@+id/itemCodeItemDetailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/code"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/itemNameItemDetailTIL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -37,14 +44,23 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/name"
-            android:inputType="text"
-            android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/itemCodeItemDetailET" />
+            app:layout_constraintTop_toBottomOf="@id/itemCodeItemDetailTIL">
+
+            <EditText
+                android:id="@+id/itemNameItemDetailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:maxLines="1"
+                />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Spinner
+            android:visibility="gone"
             android:id="@+id/itemCategoryItemDetailSP"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -55,58 +71,106 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/itemNameItemDetailET"/>
+            app:layout_constraintTop_toBottomOf="@id/itemNameItemDetailTIL"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/salePriceItemDetailTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemNameItemDetailTIL">
 
         <EditText
             android:id="@+id/salePriceItemDetailET"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/sale_price"
             android:inputType="number"
             android:maxLines="1"
+             />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/basePriceItemDetailTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/itemCategoryItemDetailSP" />
+            app:layout_constraintTop_toBottomOf="@id/salePriceItemDetailTIL">
 
         <EditText
             android:id="@+id/basePriceItemDetailET"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/base_price"
             android:inputType="number"
             android:maxLines="1"
+             />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/stockItemDetailTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/salePriceItemDetailET" />
+            app:layout_constraintTop_toBottomOf="@id/basePriceItemDetailTIL">
 
         <EditText
             android:id="@+id/stockItemDetailET"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/stock"
             android:inputType="number"
             android:maxLines="1"
+            />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/supplierItemDetailTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/basePriceItemDetailET" />
+            app:layout_constraintTop_toBottomOf="@id/stockItemDetailTIL">
+
+        <EditText
+            android:id="@+id/supplierItemDetailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/supplier"
+            android:inputType="text"
+            android:maxLines="1"
+            />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/addItemBtn"
+            android:id="@+id/addUpdateItemBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -116,7 +180,21 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/add_item"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/stockItemDetailET"/>
+            app:layout_constraintTop_toBottomOf="@id/supplierItemDetailTIL"/>
+
+        <Button
+            android:id="@+id/deleteItemBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="@string/delete_item"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@id/addUpdateItemBtn"
+            app:layout_constraintTop_toBottomOf="@id/stockItemDetailTIL"/>
 
         <CheckBox
             android:id="@+id/isVariantItemDetailCB"
@@ -131,7 +209,7 @@
             android:textSize="@dimen/medium_text_size"
             android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addItemBtn"/>
+            app:layout_constraintTop_toBottomOf="@id/addUpdateItemBtn"/>
 
         <Button
             android:id="@+id/addItemVariantBtn"

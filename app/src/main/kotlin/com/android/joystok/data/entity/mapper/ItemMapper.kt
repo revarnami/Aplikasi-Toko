@@ -20,8 +20,10 @@ constructor() : EntryEntityMapper<ItemAPIModel, ItemAPIEntity>()
             itemModel.itemCode = entity.itemCode
             itemModel.categoryId = entity.categoryId
             itemModel.itemName = entity.itemName
+            itemModel.supplier = entity.supplier
             itemModel.basePrice = entity.basePrice
             itemModel.salePrice = entity.salePrice
+            itemModel.stock = entity.stock
             itemModel.remarks = entity.remarks
             itemModel.isVariant = entity.isVariant
             itemModel.inactive = entity.inactive

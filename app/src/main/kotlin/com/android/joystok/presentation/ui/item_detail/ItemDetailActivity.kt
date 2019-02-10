@@ -2,6 +2,7 @@ package com.android.joystok.presentation.ui.item_detail
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -10,6 +11,7 @@ import com.android.joystok.R
 import com.android.joystok.data.cache.DBHelper
 import com.android.joystok.domain.model.ItemAPIModel
 import com.android.joystok.domain.model.ItemCategoryAPIModel
+import com.android.joystok.domain.model.ItemVariantAPIModel
 import com.android.joystok.presentation.AndroidApplication
 import com.android.joystok.presentation.internal.di.components.ActivityComponent
 import com.android.joystok.presentation.internal.di.components.DaggerActivityComponent
@@ -55,51 +57,26 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailView, AdapterView.OnIt
         presenter.view = this
         val filter = JSONObject()
         filter.put("categoryName", "")
-        presenter.getCategoryList(filter)
+//        presenter.getCategoryList(filter)
         val extras = intent.extras
         itemModel = extras.getSerializable(Constants.IDS().ITEM_MODEL_KEY) as ItemAPIModel
         itemId = itemModel.id!!
+        Log.e(TAG, "onCreate: itemId = ${itemModel.id}")
         if (itemId == Constants.IDS().ADD_ID) {
             isVariantItemDetailCB.visibility = View.GONE
             addItemVariantBtn.visibility = View.GONE
             itemVarianDetailRV.visibility = View.GONE
             stockItemDetailET.visibility = View.VISIBLE
-            addItemBtn.text = getString(R.string.add_item)
-            addItemBtn.setOnClickListener {
-                itemCode = itemCodeItemDetailET.text.toString()
-                itemName = itemNameItemDetailET.text.toString()
-                basePrice = basePriceItemDetailET.text.toString().toInt()
-                salePrice = salePriceItemDetailET.text.toString().toInt()
-                quantity = stockItemDetailET.text.toString().toInt()
-                val itemVariantStock = JsonObject()
-                itemVariantStock.addProperty("branchId", DBHelper().getBranchId())
-                itemVariantStock.addProperty("quantity", quantity)
-                val itemVariantObj = JsonObject()
-                itemVariantObj.addProperty("variantName", "")
-                itemVariantObj.add("itemVariantStock", itemVariantStock)
-                val itemVariants = JsonArray()
-                itemVariants.add(itemVariantObj)
-                val data = JsonObject()
-                data.addProperty("itemCode", itemCode)
-                data.addProperty("itemName", itemName)
-                data.addProperty("categoryId", 33)
-                data.addProperty("basePrice", basePrice)
-                data.addProperty("salePrice", salePrice)
-                data.addProperty("remarks", remarks)
-                data.addProperty("inactive", true)
-                isVariant = isVariantItemDetailCB.isChecked
-                data.addProperty("isVariant", isVariant)
-                data.add("itemVariant", itemVariants)
-                presenter.addItem(data)
-            }
+            addUpdateItemBtn.text = getString(R.string.add_item)
         } else {
+            Log.e(TAG, "onCreate: itemCode = ${itemModel.itemCode}")
             itemCodeItemDetailET.setText(itemModel.itemCode)
             itemNameItemDetailET.setText(itemModel.itemName)
             //combobox
             salePriceItemDetailET.setText(itemModel.salePrice.toString())
             basePriceItemDetailET.setText(itemModel.basePrice.toString())
-            addItemBtn.text = getString(R.string.update_item)
-            isVariantItemDetailCB.visibility = View.VISIBLE
+            addUpdateItemBtn.text = getString(R.string.update_item)
+//            isVariantItemDetailCB.visibility = View.VISIBLE
             isVariantItemDetailCB.setOnCheckedChangeListener { compoundButton, isChecked ->
                 if (isChecked) {
                     stockItemDetailET.visibility = View.GONE
@@ -111,7 +88,37 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailView, AdapterView.OnIt
                     itemVarianDetailRV.visibility = View.GONE
                 }
             }
+            stockItemDetailET.setText(itemModel.stock.toString())
+            supplierItemDetailET.setText(itemModel.supplier)
             isVariantItemDetailCB.isChecked = itemModel.isVariant!!
+        }
+
+        addUpdateItemBtn.setOnClickListener {
+            itemCode = itemCodeItemDetailET.text.toString()
+            itemName = itemNameItemDetailET.text.toString()
+            basePrice = basePriceItemDetailET.text.toString().toInt()
+            salePrice = salePriceItemDetailET.text.toString().toInt()
+            quantity = stockItemDetailET.text.toString().toInt()
+            val itemVariantStock = JsonObject()
+            itemVariantStock.addProperty("branchId", DBHelper().getBranchId())
+            itemVariantStock.addProperty("quantity", quantity)
+            val itemVariantObj = JsonObject()
+            itemVariantObj.addProperty("variantName", "")
+            itemVariantObj.add("itemVariantStock", itemVariantStock)
+            val itemVariants = JsonArray()
+            itemVariants.add(itemVariantObj)
+            val data = JsonObject()
+            data.addProperty("itemCode", itemCode)
+            data.addProperty("itemName", itemName)
+            data.addProperty("categoryId", 33)
+            data.addProperty("basePrice", basePrice)
+            data.addProperty("salePrice", salePrice)
+            data.addProperty("remarks", remarks)
+            data.addProperty("inactive", true)
+            isVariant = isVariantItemDetailCB.isChecked
+            data.addProperty("isVariant", isVariant)
+            data.add("itemVariant", itemVariants)
+            presenter.addItem(data)
         }
     }
 
@@ -147,6 +154,15 @@ class ItemDetailActivity : AppCompatActivity(), ItemDetailView, AdapterView.OnIt
 
     override fun showStock(quantity: Int) {
         stockItemDetailET.setText(quantity.toString())
+    }
+
+    override fun showVariantList(list: List<ItemVariantAPIModel>) {
+        itemVarianDetailRV.visibility = View.VISIBLE
+        itemVarianDetailRV.setHasFixedSize(true)
+        val llm = LinearLayoutManager(this)
+        itemVarianDetailRV.layoutManager = llm
+        val adapter = VariantRVAdapter(this, list)
+        itemVarianDetailRV.adapter = adapter
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

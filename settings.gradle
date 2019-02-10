@@ -1,1 +1,1 @@
-include ':app', ':android-client'
+include ':app'

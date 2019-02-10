@@ -1,23 +1,21 @@
-package com.android.joystok.presentation.ui.master_item
+package com.android.joystok.presentation.ui.item_detail
 
 import android.app.Activity
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.joystok.R
-import com.android.joystok.domain.model.ItemAPIModel
-import com.android.joystok.presentation.navigation.navigateToItemDetail
-import kotlinx.android.synthetic.main.item_master_item.view.*
+import com.android.joystok.domain.model.ItemVariantAPIModel
+import kotlinx.android.synthetic.main.item_master_item_variant.view.*
 
 /**
- * Created by Fauzi Arnami on 10/8/17.
+ * Created by Fauzi Arnami on 10/28/17.
  */
 
-class MasterItemRVAdapter (private val activity: Activity,
-                           private val itemList: List<ItemAPIModel>
+class VariantRVAdapter (private val activity: Activity,
+                        private val itemList: List<ItemVariantAPIModel>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
     private val TAG = "TopicMainRVAdapter"
@@ -62,15 +60,15 @@ class MasterItemRVAdapter (private val activity: Activity,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val view = holder.itemView
-        view.itemNameTV.text = "${itemList[position].itemCode} ${itemList[position].itemName}"
+        view.variantNameItemDetailTV.text = "${itemList[position].variantName}"
+        view.quantityItemDetailTV.text = "${itemList[position].itemVariantStock!!.quantity}"
         view.setOnClickListener {
-            Log.e(TAG, "onBindViewHolder: clicked")
-            navigateToItemDetail(activity, itemList[position])
+
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        val view = layoutInflater.inflate(R.layout.item_master_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.item_master_item_variant, parent, false)
         val mvh = TopicViewHolder(view)
         return mvh
     }
