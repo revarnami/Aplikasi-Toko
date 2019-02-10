@@ -14,7 +14,7 @@ Jawaban Test
 10. Akan tampil msg "Habis di bagi tiga" pada logcat
 
 Praktek
-Nama Aplikasi: Joy Stok
+Nama Aplikasi: Joy Stok</br>
 Aplikasi ini menggunakan clean architecture
 
 Fitur: 
