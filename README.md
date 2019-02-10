@@ -12,3 +12,12 @@ Jawaban Test
 8. Akan menampilkan toast dengan tulisan finishing
 9. uses permission seharusnya berada dalam sintax manifest bukan application
 10. Akan tampil msg "Habis di bagi tiga" pada logcat
+
+Praktek
+Nama Aplikasi: Joy Stok
+Aplikasi ini menggunakan clean architecture
+
+Fitur: 
+1. melihat list barang
+2. menambah barang dan
+3. edit barang
